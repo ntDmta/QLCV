@@ -1,0 +1,35 @@
+.container {
+    background-color: #f8f9fa; /* Background color */
+    border-radius: 0.5rem; /* Rounded corners */
+    padding: 1.5rem; /* Padding */
+}
+
+.card {
+    margin-bottom: 1rem; /* Khoảng cách giữa các card */
+}
+
+.info-section {
+    border: 1px solid #dee2e6; /* Border color */
+    border-radius: 0.25rem; /* Rounded edges */
+    padding: 1rem; /* Padding for section */
+    background-color: #ffffff; /* Section background */
+}
+
+.info-item {
+    margin-bottom: 0.5rem; /* Space between items */
+}
+
+.upload-section {
+    border: 1px dashed #007bff; /* Dotted border */
+    padding: 1rem; /* Inner padding */
+    background-color: #e9ecef; /* Light gray background */
+}
+
+.upload-area {
+    margin-top: 1rem; /* Space above upload area */
+}
+
+/* Thêm kiểu cho textarea */
+textarea {
+    resize: none; /* Ngăn chặn thay đổi kích thước */
+}

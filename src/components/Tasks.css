@@ -1,0 +1,59 @@
+.container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.search-bar {
+  margin-bottom: 0px;
+}
+
+.filter-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.filter-group select {
+  width: 40%;
+}
+
+.table {
+  margin-top: 10px;
+}
+
+.btn-details {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-details:hover {
+  background-color: #0056b3;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 15px;
+}
+
+.pagination button {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
