@@ -1,8 +1,33 @@
-.banner-slider {
+.banner-slider1 {
   width: 1000px;
+  height: 500px; 
   margin: 0 auto 20px;
 }
-
+.banner-slider2 {
+  width:500px; 
+  height: 400px; 
+    margin: 0 auto 20px;
+}
+.banner-slider3 {
+  width: 500px; 
+  height: 400px; 
+  margin: 0 auto 20px;
+}
+.banner-image1 {
+  width: 100%; /* Chiếm toàn bộ chiều rộng của khung */
+  height: 400px; /* Cố định chiều cao cho banner */
+  object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
+}
+.banner-image2 {
+  width: 100%; /* Chiếm toàn bộ chiều rộng của khung */
+  height: 400px; /* Cố định chiều cao cho banner */
+  object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
+}
+.banner-image3 {
+  width: 100%; /* Chiếm toàn bộ chiều rộng của khung */
+  height: 400px; /* Cố định chiều cao cho banner */
+  object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
+}
 .slick-prev, .slick-next {
   z-index: 1;
 }

@@ -81,13 +81,16 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           <img 
             src="./logo.png" 
             alt="Logo" 
-            style={{ height: '80px', marginRight: '16px' }} 
+            style={{ height: '130px', marginRight: '30px' }} 
           />
           <Title 
             level={2} 
             style={{ 
               color: '#fff', 
-              margin: 0 
+              margin: 0,
+              //textTransform: 'uppercase',
+              //fontFamily: '"Poppins", sans-serif',
+              fontWeight: 'bold' 
             }}
           >
           PHÒNG KỸ THUẬT - CÔNG NGHỆ
@@ -112,7 +115,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         style={{ 
           padding: 0, 
           background: '#fff', 
-          height: '20px', 
+          height: '0px', 
           lineHeight: '10px',
           boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
         }}
@@ -134,7 +137,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       <Content 
         className='main-content' 
         style={{ 
-          padding: '12px',
+          padding: '0px',
           height: 'calc(100vh - 250px)', // Updated to account for footer
           display: 'flex',
           justifyContent: 'center',
@@ -149,7 +152,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           textAlign: 'center',
           background: '#69b1ff',
           color: '#fff',
-          height: '64px',
+          height: '60px',
           padding: '12px',
           display: 'flex',
           flexDirection: 'column',

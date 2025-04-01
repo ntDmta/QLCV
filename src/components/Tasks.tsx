@@ -7,7 +7,7 @@ const TaskManagement = () => {
   const currentDate = new Date(); // Lấy ngày hiện tại
   const currentYear = currentDate.getFullYear();
 
-  const getFirstWeekStartDate = (year) => {
+  const getFirstWeekStartDate = (year: number) => {
     const firstDayOfYear = new Date(year, 0, 1);
     const firstDayOfWeek = firstDayOfYear.getDay(); // Ngày trong tuần (0 = Chủ nhật, 1 = Thứ hai, ...)
     
@@ -52,10 +52,10 @@ const TaskManagement = () => {
   const [selectedWeek, setSelectedWeek] = useState(currentWeek);
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState({
-    assignedBy: "",
-    assignedTo: "",
+    creator: "",
+    assignee: "",
     status: "",
-    reported: "",
+    reports: "",
   });
   const [currentPage, setCurrentPage] = useState(1);
   const tasksPerPage = 10;
@@ -63,146 +63,82 @@ const TaskManagement = () => {
 
   const tasks = [
     {
+      id: "hjsdhquwe2781duwe",
       title: "Lập dự toán sửa chữa tàu 3",
-      details: "Các ngành lập dự toán sửa chữa tàu 6, đ.c Ngưỡng tổng hợp gửi P.KH",
-      status: "Đang thực hiện",
-      assignedBy: "Phó TP Hoàng",
-      assignedTo: "Ngưỡng",
-      assignedDate: "Mar 20, 2024",
-      dueDate: "Dec 31, 2024",
-      reported: "Đã báo cáo",
-      id: 1,
-      week: 11, // Thêm trường tuần
+      description: "Các ngành lập dự toán sửa chữa tàu 6, đ.c Ngưỡng tổng hợp gửi P.KH",
+      status: "doing",
+      creator: "Lê Nguyễn Ngọc Hoàng",
+      assignee: "Trần Văn Ngưỡng",
+      created_at: 1111111,
+      start_at: 111111111111,
+      deadline: 1111111111,
+      progress: 99,
+      week: 13,
+      feedback: [
+        {
+          created_at: 2743460600,
+          creator: "Lê Nguyễn Ngọc Hoàng",
+          Content: "OK em"
+        },
+      ],
+      reports: [
+        {
+          id: "hiujfaassl",
+          created_at: 2743460600,
+          creator: "Trần Văn Ngưỡng",
+          report: "Các ngành đã nộp dự toán"
+        },
+        {
+          id: "hiujkl",
+          created_at: 2743460600,
+          creator: "Trần Văn Ngưỡng",
+          report: "Đã gửi dự toán cho P.KH"
+        }
+      ],
     },
     {
+      id: "hjshfmwuwe2781duwe",
       title: "Tổng hợp BBKSCT tàu 5",
-      details: "Các ngành soạn BBKSCT tàu 5 theo dự toán, đ.c Thường tổng hợp gửi P.KH",
-      status: "Chưa thực hiện",
-      assignedBy: "Phó TP Hoàng",
-      assignedTo: "Thường",
-      assignedDate: "Mar 22, 2024",
-      dueDate: "Jan 15, 2025",
-      reported: "Chưa báo cáo",
-      id: 2,
-      week: 11, // Thêm trường tuần
-    },
-    {
-      title: "Khảo sát,ra phiếu YCVT sửa chữa máy hàn xưởng Vỏ",
-      details: "Khảo sát chi tiết, lên phương án sc, ra phiếu YCVT gửi P.VT",
-      status: "Chưa thực hiện",
-      assignedBy: "Phó TP Thành",
-      assignedTo: "Tiến",
-      assignedDate: "Mar 22, 2024",
-      dueDate: "Jan 15, 2025",
-      reported: "Chưa báo cáo",
-      id: 3,
-      week: 12, // Thêm trường tuần
-    },
-    {
-      title: "Lập dự toán sc TTB NM 2025",
-      details: "Đẩy nhanh tiến độ lập dự toán, xin phê duyệt, ứng kinh phí, đảm bảo các TTB sc tàu",
-      status: "Chưa thực hiện",
-      assignedBy: "Phó TP Thành",
-      assignedTo: "Hiền",
-      assignedDate: "Mar 22, 2024",
-      dueDate: "Jan 15, 2025",
-      reported: "Chưa báo cáo",
-      id: 4,
-      week: 12, // Thêm trường tuần
-    },
-    {
-      title: "Báo cáo KQ THNV tuần",
-      details: "Hoàn thiện báo cáo tuần gửi P.KH",
-      status: "Chưa thực hiện",
-      assignedBy: "Phó TP Hoàng",
-      assignedTo: "Khánh",
-      assignedDate: "Mar 22, 2024",
-      dueDate: "Jan 15, 2025",
-      reported: "Chưa báo cáo",
-      id: 5,
-      week: 13, // Thêm trường tuần
-    },
-    {
-      title: "Tổng hợp kết quả sửa chữa TTB trong tuần",
-      details: "",
-      status: "Chưa thực hiện",
-      assignedBy: "Phó TP Hoàng",
-      assignedTo: "Tuyến",
-      assignedDate: "Mar 22, 2024",
-      dueDate: "Jan 15, 2025",
-      reported: "Chưa báo cáo",
-      id: 6,
-      week: 13, // Thêm trường tuần
-    },
-    {
-      title: "Báo cáo KQ khóa học CNC",
-      details: "Báo cáo KQ thi lý thuyết, thực hành vận hành máy CNC",
-      status: "Chưa thực hiện",
-      assignedBy: "Phó TP Hoàng",
-      assignedTo: "Phó TP Biên",
-      assignedDate: "Mar 22, 2024",
-      dueDate: "Jan 15, 2025",
-      reported: "Chưa báo cáo",
-      id: 7,
-      week: 13, // Thêm trường tuần
-    },
-    {
-      title: "Tổng hợp BBKSCT tàu 5",
-      details: "Các ngành soạn BBKSCT tàu 5 theo dự toán, đ.c Thường tổng hợp gửi P.KH",
-      status: "Chưa thực hiện",
-      assignedBy: "Phó TP Hoàng",
-      assignedTo: "Thường",
-      assignedDate: "Mar 22, 2024",
-      dueDate: "Jan 15, 2025",
-      reported: "Chưa báo cáo",
-      id: 8,
-      week: 13, // Thêm trường tuần
-    },
-    {
-      title: "Tổng hợp BBKSCT tàu 5",
-      details: "Các ngành soạn BBKSCT tàu 5 theo dự toán, đ.c Thường tổng hợp gửi P.KH",
-      status: "Chưa thực hiện",
-      assignedBy: "Phó TP Hoàng",
-      assignedTo: "Thường",
-      assignedDate: "Mar 22, 2024",
-      dueDate: "Jan 15, 2025",
-      reported: "Chưa báo cáo",
-      id: 9,
-      week: 13, // Thêm trường tuần
-    },
-    {
-      title: "Tổng hợp BBKSCT tàu 5",
-      details: "Các ngành soạn BBKSCT tàu 5 theo dự toán, đ.c Thường tổng hợp gửi P.KH",
-      status: "Chưa thực hiện",
-      assignedBy: "Phó TP Hoàng",
-      assignedTo: "Thường",
-      assignedDate: "Mar 22, 2024",
-      dueDate: "Jan 15, 2025",
-      reported: "Chưa báo cáo",
-      id: 10,
-      week: 13, // Thêm trường tuần
-    },
-    {
-      title: "Tổng hợp BBKSCT tàu 5",
-      details: "Các ngành soạn BBKSCT tàu 5 theo dự toán, đ.c Thường tổng hợp gửi P.KH",
-      status: "Chưa thực hiện",
-      assignedBy: "Phó TP Hoàng",
-      assignedTo: "Thường",
-      assignedDate: "Mar 22, 2024",
-      dueDate: "Jan 15, 2025",
-      reported: "Chưa báo cáo",
-      id: 11,
-      week: 13, // Thêm trường tuần
+      description: "Các ngành soạn BBKSCT theo dự toán, đ.c Thường tổng hợp gửi P.KH",
+      status: "doing",
+      creator: "Lê Nguyễn Ngọc Hoàng",
+      assignee: "Hà Văn Thường",
+      created_at: 1111113431,
+      start_at: 111111111111,
+      deadline: 1113321111,
+      progress: 50,
+      week: 13,
+      feedback: [
+        {
+          created_at: 2743460600,
+          creator: "Lê Nguyễn Ngọc Hoàng",
+          Content: "OK em"
+        },
+      ],
+      reports: [
+        {
+          id: "hiujfaassl",
+          created_at: 2743460600,
+          creator: "Hà Văn Thường",
+          report: "Đã tổng hợp xong 11 bb"
+        },
+        {
+          id: "hiujkl",
+          created_at: 2743460600,
+          creator: "Hà Văn Tường",
+          report: "Đã tổng hợp xong 15 bb"
+        }
+      ],
     },
   ];
 
   const filteredTasks = tasks.filter(
     (task) =>
       task.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (filter.assignedBy ? task.assignedBy === filter.assignedBy : true) &&
-      (filter.assignedTo ? task.assignedTo === filter.assignedTo : true) &&
+      (filter.creator ? task.creator === filter.creator : true) &&
+      (filter.assignee ? task.assignee === filter.assignee : true) &&
       (filter.status ? task.status === filter.status : true) &&
-      (filter.reported ? task.reported === filter.reported : true) &&
+      (filter.reports ? task.reports.some(report => report.report === filter.reports) : true) &&
       task.week === selectedWeek // Lọc theo tuần
   );
 
@@ -240,12 +176,12 @@ const TaskManagement = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <select className="form-select" onChange={(e) => setFilter({ ...filter, assignedBy: e.target.value })}>
+        <select className="form-select" onChange={(e) => setFilter({ ...filter, creator: e.target.value })}>
           <option value="">Người giao việc</option>
           <option value="Phó TP Hoàng">Phó TP Hoàng</option>
           <option value="Phó TP Thành">Phó TP Thành</option>
         </select>
-        <select className="form-select" onChange={(e) => setFilter({ ...filter, assignedTo: e.target.value })}>
+        <select className="form-select" onChange={(e) => setFilter({ ...filter, assignee: e.target.value })}>
           <option value="">Người thực hiện</option>
           <option value="Ngưỡng">Ngưỡng</option>
           <option value="Thường">Thường</option>
@@ -260,7 +196,7 @@ const TaskManagement = () => {
           <option value="Đang thực hiện">Đang thực hiện</option>
           <option value="Chưa thực hiện">Chưa thực hiện</option>
         </select>
-        <select className="form-select" onChange={(e) => setFilter({ ...filter, reported: e.target.value })}>
+        <select className="form-select" onChange={(e) => setFilter({ ...filter, reports: e.target.value })}>
           <option value="">Báo cáo</option>
           <option value="Đã báo cáo">Đã báo cáo</option>
           <option value="Chưa báo cáo">Chưa báo cáo</option>
@@ -270,13 +206,14 @@ const TaskManagement = () => {
       <table className="table table-hover table-bordered text-center">
         <thead className="table-dark">
           <tr>
-            <th>Thứ tự</th>
+            <th>TT</th>
             <th>Nội dung công việc</th>
             <th>Trạng thái</th>
             <th>Người giao việc</th>
             <th>Người thực hiện</th>
-            <th>Ngày giao</th>
-            <th>Thời hạn</th>
+            <th>Bắt đầu</th>
+            <th>Kết thúc</th>
+            <th>Tiến trình thực hiện</th>
             <th>Báo cáo</th>
             <th>Chi tiết</th>
           </tr>
@@ -285,13 +222,18 @@ const TaskManagement = () => {
           {displayedTasks.map((task, index) => (
             <tr key={task.id}>
               <td>{(currentPage - 1) * tasksPerPage + index + 1}</td>
-              <td>{task.title}</td>
+              <td><div className="TaskTitle text-start">{task.title}</div></td>
               <td>{task.status}</td>
-              <td>{task.assignedBy}</td>
-              <td>{task.assignedTo}</td>
-              <td>{task.assignedDate}</td>
-              <td>{task.dueDate}</td>
-              <td>{task.reported}</td>
+              <td>{task.creator}</td>
+              <td>{task.assignee}</td>
+              <td>{new Date(task.created_at * 1000).toLocaleDateString("en-US", {timeZone: "Asia/Bangkok"})}</td>
+              <td>{new Date(task.deadline * 1000).toLocaleDateString("en-US", {timeZone: "Asia/Bangkok"})}</td>
+              <td>
+                <div className="progress">
+                  <div className="progress-bar" role="progressbar" style={{ width: `${task.progress}%` }} aria-valuenow={task.progress} aria-valuemin={0} aria-valuemax={100}>{task.progress}%</div>
+                </div>
+              </td>
+              <td>{task.reports.length > 0 && `${task.reports[task.reports.length - 1].report}`}</td>
               <td>
                 <button className="btn-details" onClick={() => navigate(`/tasks/${task.id}`)}>
                   Chi tiết
