@@ -4,7 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const CreateTask: React.FC = () => {
     const Users = [
         "Trần Văn Ngưỡng", 
-        "Hà Văn Thường"   
+        "Hà Văn Thường",
+        "Nguyễn Trọng Đạt"   
     ];
 
     const [title, setTitle] = useState('');
